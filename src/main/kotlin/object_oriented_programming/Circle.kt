@@ -2,14 +2,18 @@ package object_oriented_programming
 
 import kotlin.math.*
 
-class Circle constructor(val radius: Double) {
+class Circle constructor(val radius: Double) : Shape("Circle") {
+
+    companion object {
+
+    }
     init {
-        println("Circle created with radius = $radius")
-        println("Circle are is ${area()}")
-        println("Circle perimeter is ${perimeter()}")
+        println("$name created with radius = $radius")
+        println("$name are is ${area()}")
+        println("$name perimeter is ${perimeter()}")
     }
 
-    fun area() = radius.pow(2) * PI
+    override fun area() = radius.pow(2) * PI
 
-    fun perimeter() = 2 * radius * PI
+    override fun perimeter() = 2 * radius * PI
 }
