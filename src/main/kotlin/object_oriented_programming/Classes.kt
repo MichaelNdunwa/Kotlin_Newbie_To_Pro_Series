@@ -1,21 +1,36 @@
 package object_oriented_programming
 
-fun maxArea(shape1: Shape, shape2: Shape): Double {
-    val areaShape1 = shape1.area()
-    val areaShape2 = shape2.area()
-    return if(areaShape1 > areaShape2) areaShape1 else areaShape2
-}
-
-fun maxArea(shape1: Shape, shape2: Shape, shape3: Shape): Double {
-    val maxAreaTwo = maxArea(shape1, shape2)
-    val areaShape3 = shape3.area()
-    return if(maxAreaTwo > areaShape3) maxAreaTwo else areaShape3
-}
-
 fun main() {
-    val areaOfTwoShapes = maxArea(Rectangle(4.0), Rectangle(5.0))
-    val areaOfThreeShapes = maxArea(Rectangle(4.0), Rectangle(5.0), Rectangle(6.0))
+//    Rectangle.randomRectangle()
+    val a = 3.0; val b = 4.0; val c = 5.0; val d = 2.5; val height = 2.0
+    val parallelogram = object : Shape("Parallelogram", a, b, height) {
+        init {
+            println("$name created with a = $a, b = $b and height = $height")
+            println("$name area is ${area()}")
+            println("$name perimeter is ${perimeter()}")
+        }
 
-    println(areaOfTwoShapes)
-    println(areaOfThreeShapes)
+        override fun area(): Double = a * height
+
+        override fun perimeter(): Double = 2 * a + 2 * b
+
+        fun isRectangle(): Boolean = height == b
+    }
+    println("Is the parallelogram a rectangle? ${parallelogram.isRectangle()}")
+
+    // Trapezium:
+    val trapezium = object : Shape("Trapezium", a, b, c, d, height) {
+
+        init {
+            println("$name created with a = $a, b = $b, c = $c, d = $d and height = $height")
+            println("$name area is ${area()}")
+            println("$name perimeter is ${perimeter()}")
+        }
+
+        override fun area(): Double = (a + c) * height / 2.0
+        override fun perimeter(): Double = a + b + c + d
+
+        fun isRectangle(): Boolean = a == c && b == d
+    }
+    println("Is the trapezium a rectangle? ${trapezium.isRectangle()}")
 }
